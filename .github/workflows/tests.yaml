@@ -36,7 +36,9 @@ jobs:
       run: curl -LsSf https://astral.sh/uv/0.4.1/install.sh | sh
 
     - name: Test with pytest
-      run: uv run --with . --extra dev --resolution ${{ matrix.resolution }} --pre --python ${{ matrix.python-version}} pytest --cov=volara tests
+      run: |
+        uv pip install .
+        uv run --extra dev --resolution ${{ matrix.resolution }} --pre --python ${{ matrix.python-version}} pytest --cov=volara tests
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
