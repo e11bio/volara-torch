@@ -56,9 +56,9 @@ pred_size_growth = Coordinate(0, 0, 0)
 
 
 # %%
-from volara.blockwise import Predict
 from volara.datasets import Affs, Raw
-from volara.models import TorchModel
+from volara_torch.blockwise import Predict
+from volara_torch.models import TorchModel
 
 # %% [markdown]
 
