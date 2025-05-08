@@ -5,8 +5,7 @@ from typing import Literal
 import numpy as np
 import torch
 from funlib.geometry import Coordinate
-
-from .utils import PydanticCoordinate, StrictBaseModel
+from volara.utils import PydanticCoordinate, StrictBaseModel
 
 
 class Model(StrictBaseModel, ABC):

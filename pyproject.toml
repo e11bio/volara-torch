@@ -28,7 +28,7 @@ docs = [
 ]
 
 [project.entry-points."volara.blockwise_tasks"]
-predict = "volara-torch.blockwise.predict:Predict"
+predict = "volara_torch.blockwise.predict:Predict"
 
 [tool.uv.sources]
 volara = { git = "https://github.com/e11bio/volara" }
