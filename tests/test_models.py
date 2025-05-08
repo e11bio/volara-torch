@@ -1,8 +1,7 @@
 import numpy as np
 import pytest
 import torch
-
-from volara.models import TorchModel
+from volara_torch.models import TorchModel
 
 
 @pytest.mark.parametrize("save_type", ["jit", "pickle"])

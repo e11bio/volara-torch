@@ -11,11 +11,11 @@ from funlib.geometry import Coordinate, Roi
 from funlib.persistence import Array
 from gunpowder import ArrayKey, Batch, BatchProvider
 from pydantic import Field
+from volara.blockwise import BlockwiseTask
+from volara.datasets import LSD, Affs, Dataset, Raw
+from volara.utils import PydanticCoordinate
 
-from ..datasets import LSD, Affs, Dataset, Raw
 from ..models import Model, TorchModel
-from ..utils import PydanticCoordinate
-from .blockwise import BlockwiseTask
 
 logger = logging.getLogger(__file__)
 

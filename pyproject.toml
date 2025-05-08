@@ -32,3 +32,6 @@ predict = "volara-torch.blockwise.predict:Predict"
 
 [tool.uv.sources]
 volara = { git = "https://github.com/e11bio/volara" }
+
+[tool.ruff]
+lint.select = ["F", "W", "I001"]
