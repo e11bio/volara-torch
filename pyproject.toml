@@ -31,4 +31,4 @@ docs = [
 predict = "volara-torch.blockwise.predict:Predict"
 
 [tool.uv.sources]
-volara = { git = "https://github.com/e11bio/volara", rev = "volara-predict" }
+volara = { git = "https://github.com/e11bio/volara" }
