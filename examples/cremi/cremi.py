@@ -8,6 +8,8 @@ from pathlib import Path
 import wget
 from funlib.geometry import Coordinate
 
+Path("_static/cremi").mkdir(parents=True, exist_ok=True)
+
 # Download some cremi data
 # immediately convert it to zarr for convenience
 if not Path("sample_A+_20160601.zarr").exists():
