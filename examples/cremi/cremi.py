@@ -172,4 +172,4 @@ ani.save("_static/cremi/outputs.gif", writer="pillow", fps=10)
 plt.close()
 
 # %% [markdown]
-# ![segmentation](_static/cremi/outputs.gif)
+# ![predictions](_static/cremi/outputs.gif)
