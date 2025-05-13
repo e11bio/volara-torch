@@ -307,6 +307,7 @@ for i, (raw_slice, fragments_slice, segments_slice) in enumerate(
 ims = ims + ims[::-1]
 ani = animation.ArtistAnimation(fig, ims, blit=True)
 ani.save("_static/cremi/segmentation.gif", writer="pillow", fps=10)
+plt.close()
 
 # %% [markdown]
 # The final segmentation is shown below. Obviously this is not a great segmentation, but it is
