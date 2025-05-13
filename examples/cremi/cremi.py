@@ -117,7 +117,7 @@ predict_cremi.run_blockwise(multiprocessing=False)
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(1, 3, figsize=(15, 5))
-ax[0].imshow(predict_cremi.in_data.array("r")[100])
+ax[0].imshow(predict_cremi.in_data.array("r")[100], cmap="gray")
 ax[0].set_title("Raw")
 ax[1].imshow(predict_cremi.out_data[0].array("r")[:3, 100].transpose(1, 2, 0))
 ax[1].set_title("LSDs")
@@ -266,7 +266,7 @@ for i, (raw_slice, fragments_slice, segments_slice) in enumerate(
 ):
     # Show the raw data
     if i == 0:
-        im_raw = axes[0].imshow(raw_slice)
+        im_raw = axes[0].imshow(raw_slice, cmap="gray")
         axes[0].set_title("Raw")
         im_fragments = axes[1].imshow(
             fragments_slice,
@@ -285,7 +285,7 @@ for i, (raw_slice, fragments_slice, segments_slice) in enumerate(
         )
         axes[2].set_title("Segments")
     else:
-        im_raw = axes[0].imshow(raw_slice, animated=True)
+        im_raw = axes[0].imshow(raw_slice, animated=True, cmap="gray")
         im_fragments = axes[1].imshow(
             fragments_slice,
             cmap=cmap_labels,
