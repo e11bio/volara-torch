@@ -140,7 +140,6 @@ class Predict(BlockwiseTask):
                     axis_names=[f"{out_data.name}^"] + axis_names,
                     types=[out_data.name] + types,
                     dtype=self._out_array_dtype,
-                    kwargs=out_data.attrs,
                 )
 
     def select_device(self, client):
