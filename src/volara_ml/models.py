@@ -77,7 +77,10 @@ class Model(StrictBaseModel, ABC):
     a specific lower and upper context size for the model which must equal
     the expected context size of input_shape - output_shape
     """
-    out_dtype: np.dtype = np.dtype(np.uint8)
+
+    @property
+    def out_dtype(self) -> np.dtype:
+        return np.dtype(np.uint8)
 
     @property
     def context(self) -> Coordinate | tuple[Coordinate, Coordinate]:

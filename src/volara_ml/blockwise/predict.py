@@ -96,7 +96,10 @@ class Predict(BlockwiseTask):
 
     fit: Literal["overhang"] = "overhang"
     read_write_conflict: Literal[False] = False
-    out_array_dtype: np.dtype = np.dtype(np.uint8)
+
+    @property
+    def out_array_dtype(self) -> np.dtype:
+        return np.dtype(np.uint8)
 
     @property
     def checkpoint_config(self) -> Model:
@@ -229,6 +232,9 @@ class Predict(BlockwiseTask):
             with gp.build(pipeline):
 
                 def process_block(block):
+                    if np.count_nonzero(in_array.to_ndarray(block.write_roi)) == 0:
+                        return
+
                     request = gp.BatchRequest()
                     request[input_key] = gp.ArraySpec(roi=block.read_roi)
                     for i, output_key in enumerate(output_keys):
