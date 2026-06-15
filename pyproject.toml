@@ -3,18 +3,15 @@ name = "volara-ml"
 version = "1.1.0"
 description = "Plugin for Volara including ML-related tasks. This includes the `Predict` task and the `models` module."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "volara>=1.0.4",
     "daisy>=1.2.2",
-    "gunpowder",
+    "gunpowder>=1.5.0",
     "funlib.geometry>=0.3",
     "funlib.persistence>=0.7",
     "pydantic>=2.6.3",
 ]
-
-[tool.uv.sources]
-gunpowder = { git = "https://github.com/funkelab/gunpowder", branch = "zarr3" }
 
 [project.optional-dependencies]
 torch = ["torch>=2.4"]
