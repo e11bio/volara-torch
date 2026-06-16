@@ -31,8 +31,9 @@ work_dir.mkdir(parents=True, exist_ok=True)
 rng = np.random.default_rng(42)
 data = rng.integers(0, 256, size=(64, 64), dtype=np.uint8)
 
-store = zarr.open(str(work_dir / "data.zarr"), "w")
-raw_ds = store.create_dataset("raw", data=data)
+store = zarr.open(str(work_dir / "data.zarr"), mode="w")
+raw_ds = store.create_array("raw", shape=data.shape, dtype=data.dtype)
+raw_ds[:] = data
 raw_ds.attrs["voxel_size"] = (1, 1)
 raw_ds.attrs["axis_names"] = ["y", "x"]
 raw_ds.attrs["unit"] = ["px", "px"]
@@ -88,10 +89,10 @@ jax_model = JaxModel(
 )
 
 raw_in = Raw(
-    store=str(work_dir / "data.zarr/raw"),
+    store=work_dir / "data.zarr/raw",
     scale_shift=(1 / 255, 0),
 )
-raw_out = Raw(store=str(work_dir / "data.zarr/output"))
+raw_out = Raw(store=work_dir / "data.zarr/output")
 
 predict_task = Predict(
     checkpoint=jax_model,
@@ -110,8 +111,8 @@ predict_task.run_blockwise(multiprocessing=False)
 # ## 5. Verify output matches input
 
 # %%
-input_data = zarr.open(str(work_dir / "data.zarr/raw"), "r")[:]
-output_data = zarr.open(str(work_dir / "data.zarr/output"), "r")[:]
+input_data = zarr.open(str(work_dir / "data.zarr/raw"), mode="r")[:]
+output_data = zarr.open(str(work_dir / "data.zarr/output"), mode="r")[:]
 
 # The identity model receives float data in [0, 1] (via scale_shift) and outputs
 # it unchanged. The output is then quantized back to uint8. The output has a

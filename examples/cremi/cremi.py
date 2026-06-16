@@ -20,9 +20,11 @@ if not Path("sample_A+_20160601.zarr/raw").exists():
     import h5py
     import zarr
 
-    raw_ds = zarr.open("sample_A+_20160601.zarr", "w").create_dataset(
-        "raw", data=h5py.File("sample_A+_20160601.hdf", "r")["volumes/raw"][:]
+    raw_data = h5py.File("sample_A+_20160601.hdf", "r")["volumes/raw"][:]
+    raw_ds = zarr.open("sample_A+_20160601.zarr", mode="w").create_array(
+        "raw", shape=raw_data.shape, dtype=raw_data.dtype
     )
+    raw_ds[:] = raw_data
     raw_ds.attrs["voxel_size"] = (40, 4, 4)
     raw_ds.attrs["axis_names"] = ["z", "y", "x"]
     raw_ds.attrs["unit"] = ["nm", "nm", "nm"]
