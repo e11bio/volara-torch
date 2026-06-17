@@ -167,3 +167,6 @@ volara_logs
 uv.lock
 *.zarr
 CLAUDE.md
+.claude/settings.local.json
+docs/source/examples/
+*.ipynb
